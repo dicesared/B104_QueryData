@@ -3,8 +3,9 @@
 # Assignment: Final Project
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
-df = pd.read_csv("https://raw.githubusercontent.com/dicesared/B104_QueryData/refs/heads/dev/B104_Project_QueryV3.csv?token=GHSAT0AAAAAAD22X27P5WWX5CYJRVH2K7GQ2PHZI3Q")
+df = pd.read_csv("https://raw.githubusercontent.com/dicesared/B104_QueryData/refs/heads/dev/B104_Project_QueryV3.csv?token=GHSAT0AAAAAAD22X27OEL4REXOAPSDBS3TK2PIF2TA")
 
 
 ## Question Answer Maps
@@ -39,4 +40,13 @@ df["q84"] = df["q84"].replace(q84_map)
 #df["q16"] = df["q16"].replace(q16_map)
 #df["q18"] = df["q18"].replace(q18_map)
 
+plt.plot(df['q1'], df ['q66'])
+plt.xlabel("q1")
+plt.ylabel('q66')
+plt.title('Graph 1')
+plt.show()
 print(df.head())
+print(df.columns)
+print(df.columns.tolist())
+print(df.dtypes)
+print(df)
