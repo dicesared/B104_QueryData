@@ -5,7 +5,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("/Users/brendancruz/Desktop/School/B104/YRBS_data/B104_QueryData/B104_Project_QueryV3.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/dicesared/B104_QueryData/refs/heads/dev/B104_Project_QueryV3.csv?token=GHSAT0AAAAAAD22X27OAVSCIK6MORMLNAFC2PJPXMQ")
 
 
 # ## Question Answer Maps
@@ -26,9 +26,9 @@ q84_map = {1: "Never", 2: "Rarely", 3: "Sometimes", 4: "Most of the time", 5: "A
 df["q1"] = df["q1"].replace(q1_map)
 df["q2"] = df["q2"].replace(q2_map)
 df["q3"] = df["q3"].replace(q3_map)
-df["q66"] = df["q66"].replace(q66_map)
+#df["q66"] = df["q66"].replace(q66_map)
 #df["q80"] = df["q80"].replace(q80_map)
-df["q84"] = df["q84"].replace(q84_map)
+#df["q84"] = df["q84"].replace(q84_map)
 
 
 print(df.head())
@@ -39,11 +39,80 @@ df.groupby('q3')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='bl
 plt.xlabel('Grade Level')
 plt.ylabel('Avg Social Media Use')
 plt.title('Average Social Media Use by Grade Level')
+plt.yticks([1, 2, 3, 4, 5, 6, 7, 8], ["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ],)
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
+df.groupby('q3')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+plt.xlabel('Grade Level')
+plt.ylabel('Avg Mental Health')
+plt.title('Average Mental Health level being rated poor by Grade Level')
+plt.yticks([1, 2, 3, 4, 5], ["Never", "Rarely", "Sometimes", "Most of the time", "Always"], )
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
 
+df.groupby('q3')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+plt.xlabel('Grade Level')
+plt.ylabel('Avg Weight Self-Reflection')
+plt.title('Average Weight Self-Reflection by Grade Level')
+plt.yticks([1, 2, 3, 4, 5], ["Very underweight", "Slightly underweight", "Aout the right weight", "Slightly overweight", "Very overweight"], )
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
 
+df.groupby('q2')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+plt.xlabel('Gender')
+plt.ylabel('Avg Weight Self-Reflection')
+plt.title('Average Weight Self-Reflection by Gender')
+plt.yticks([1, 2, 3, 4, 5], ["Very underweight", "Slightly underweight", "About the right weight", "Slightly overweight", "Very overweight"], )
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
 
+df.groupby('q1')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+plt.xlabel('Age')
+plt.ylabel('Avg Weight Self-Reflection')
+plt.title('Average Weight Self-Reflection by Age')
+plt.yticks([1, 2, 3, 4, 5], ["Very underweight", "Slightly underweight", "About the right weight", "Slightly overweight", "Very overweight"], )
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+df.groupby('q2')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+plt.xlabel('Gender')
+plt.ylabel('Avg Mental Health')
+plt.title('Average Mental Health level being rated poor by Gender')
+plt.yticks([1, 2, 3, 4, 5], ["Never", "Rarely", "Sometimes", "Most of the time", "Always"], )
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+df.groupby('q1')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+plt.xlabel('Age')
+plt.ylabel('Avg Mental Health')
+plt.title('Average Mental Health level being rated poor by Age')
+plt.yticks([1, 2, 3, 4, 5], ["Never", "Rarely", "Sometimes", "Most of the time", "Always"], )
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+df.groupby('q2')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+plt.xlabel('Gender')
+plt.ylabel('Avg Social Media Use')
+plt.title('Average Social Media Use by Gender')
+plt.yticks([1, 2, 3, 4, 5, 6, 7, 8], ["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ],)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+df.groupby('q1')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+plt.xlabel('Age')
+plt.ylabel('Avg Social Media Use')
+plt.title('Average Social Media Use by Age')
+plt.yticks([1, 2, 3, 4, 5, 6, 7, 8], ["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ],)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
 
