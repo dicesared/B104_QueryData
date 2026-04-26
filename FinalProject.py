@@ -4,8 +4,9 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import tkinter as tk
 
-df = pd.read_csv("https://raw.githubusercontent.com/dicesared/B104_QueryData/refs/heads/dev/B104_Project_QueryV3.csv?token=GHSAT0AAAAAAD22X27OAVSCIK6MORMLNAFC2PJPXMQ")
+df = pd.read_csv("https://raw.githubusercontent.com/dicesared/B104_QueryData/refs/heads/dev/B104_Project_QueryV3.csv?token=GHSAT0AAAAAAD22X27PKGFGFNEBQ6EXBY4S2PNCBYA")
 
 
 # ## Question Answer Maps
@@ -116,3 +117,12 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
+
+root = tk.Tk()
+root.title("Spyder Tkinter Test")
+root.geometry("300x200")
+
+label = tk.Label(root, text="4/25 test message")
+label.pack(pady=20)
+
+root.mainloop()
