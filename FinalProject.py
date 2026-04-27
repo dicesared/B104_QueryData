@@ -6,8 +6,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
+import matplotlib
+matplotlib.use('TkAgg')
 
-df = pd.read_csv("/Users/brendancruz/Desktop/School/B104/YRBS_data/B104_QueryData/B104_Project_QueryV3.csv")
+
+df = pd.read_csv("https://raw.githubusercontent.com/dicesared/B104_QueryData/refs/heads/dev/B104_Project_QueryV3.csv?token=GHSAT0AAAAAAD22X27OSZMZ34X6DHI7XDNO2PP3RWQ")
 
 print(df.head())
 
@@ -51,16 +54,16 @@ def socialmedia_grade():
     for widget in frame.winfo_children():
         widget.destroy()
     fig, ax = plt.subplots(figsize=(6, 3))
-    
+
     df.groupby('q3')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
     ax.set_xlabel('Grade Level')
     ax.set_ylabel('Avg Social Media Use')
     ax.set_title('Average Social Media Use by Grade Level')
     ax.set_yticks([1, 2, 3, 4, 5, 6, 7, 8])
-    ax.set_yticklabels(["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ])
+    ax.set_yticklabels(["I don't use social media", "A few times a month", "About once a week", "A few times a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour"])
     ax.tick_params(axis='x', rotation=45)
     fig.tight_layout()
-    
+
     canvas = FigureCanvasTkAgg(fig, master=frame)
     canvas.draw()
     canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
