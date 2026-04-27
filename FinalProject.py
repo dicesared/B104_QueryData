@@ -4,9 +4,10 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
 
-df = pd.read_csv("https://raw.githubusercontent.com/dicesared/B104_QueryData/refs/heads/dev/B104_Project_QueryV3.csv?token=GHSAT0AAAAAAD22X27PKGFGFNEBQ6EXBY4S2PNCBYA")
+df = pd.read_csv("/Users/brendancruz/Desktop/School/B104/YRBS_data/B104_QueryData/B104_Project_QueryV3.csv")
 
 
 # ## Question Answer Maps
@@ -81,46 +82,139 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
-df.groupby('q2')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
-plt.xlabel('Gender')
-plt.ylabel('Avg Mental Health')
-plt.title('Average Mental Health level being rated poor by Gender')
-plt.yticks([1, 2, 3, 4, 5], ["Never", "Rarely", "Sometimes", "Most of the time", "Always"], )
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+# df.groupby('q2')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+# plt.xlabel('Gender')
+# plt.ylabel('Avg Mental Health')
+# plt.title('Average Mental Health level being rated poor by Gender')
+# plt.yticks([1, 2, 3, 4, 5], ["Never", "Rarely", "Sometimes", "Most of the time", "Always"], )
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
 
-df.groupby('q1')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
-plt.xlabel('Age')
-plt.ylabel('Avg Mental Health')
-plt.title('Average Mental Health level being rated poor by Age')
-plt.yticks([1, 2, 3, 4, 5], ["Never", "Rarely", "Sometimes", "Most of the time", "Always"], )
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+def mentalhealth_gender():
+    for widget in frame.winfo_children():
+        widget.destroy()
+        
+    df.groupby('q2')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+    ax.set_xlabel('Gender')
+    ax.set_ylabel('Avg Mental Health')
+    ax.set_title('Average Mental Health level being rated poor by Gender')
+    ax.set_yticks([1, 2, 3, 4, 5])
+    ax.set_yticklabels(["Never", "Rarely", "Sometimes", "Most of the time", "Always"])
+    ax.tick_params(axis='x', rotation=45)
+    fig.tight_layout()
+    
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
-df.groupby('q2')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
-plt.xlabel('Gender')
-plt.ylabel('Avg Social Media Use')
-plt.title('Average Social Media Use by Gender')
-plt.yticks([1, 2, 3, 4, 5, 6, 7, 8], ["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ],)
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+# df.groupby('q1')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+# plt.xlabel('Age')
+# plt.ylabel('Avg Mental Health')
+# plt.title('Average Mental Health level being rated poor by Age')
+# plt.yticks([1, 2, 3, 4, 5], ["Never", "Rarely", "Sometimes", "Most of the time", "Always"], )
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
 
-df.groupby('q1')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
-plt.xlabel('Age')
-plt.ylabel('Avg Social Media Use')
-plt.title('Average Social Media Use by Age')
-plt.yticks([1, 2, 3, 4, 5, 6, 7, 8], ["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ],)
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+def mentalhealth_age():
+    for widget in frame.winfo_children():
+        widget.destroy()
+    fig, ax = plt.subplots(figsize=(8, 5))
+    df.groupby('q1')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
+    ax.set_xlabel('Age')
+    ax.set_ylabel('Avg Mental Health')
+    ax.set_title('Average Mental Health level being rated poor by Age')
+    ax.set_yticks([1, 2, 3, 4, 5])
+    ax.set_yticklabels(["Never", "Rarely", "Sometimes", "Most of the time", "Always"])
+    ax.tick_params(axis='x', rotation=45)
+    fig.tight_layout()
+    
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
+# df.groupby('q2')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+# plt.xlabel('Gender')
+# plt.ylabel('Avg Social Media Use')
+# plt.title('Average Social Media Use by Gender')
+# plt.yticks([1, 2, 3, 4, 5, 6, 7, 8], ["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ],)
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
 
+def socialmedia_gender():
+    for widget in frame.winfo_children():
+        widget.destroy()
+        
+    fig, ax = plt.subplots(figsize=(8, 5))
+    df.groupby('q2')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
+    ax.set_xlabel('Gender')
+    ax.set_ylabel('Avg Social Media Use')
+    ax.set_title('Average Social Media Use by Gender')
+    ax.set_yticks([1, 2, 3, 4, 5, 6, 7, 8])
+    ax.set_yticklabels(["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ])
+    ax.tick_params(axis='x', rotation=45)
+    fig.tight_layout()
+    
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+# df.groupby('q1')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+# plt.xlabel('Age')
+# plt.ylabel('Avg Social Media Use')
+# plt.title('Average Social Media Use by Age')
+# plt.yticks([1, 2, 3, 4, 5, 6, 7, 8], ["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ],)
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
+
+def socialmedia_age():
+    for widget in frame.winfo_children():
+        widget.destroy()
+        
+    fig, ax = plt.subplots(figsize=(8, 5))
+    df.groupby('q1')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
+    ax.set_xlabel('Age')
+    ax.set_ylabel('Avg Social Media Use')
+    ax.set_title('Average Social Media Use by Age')
+    ax.set_yticks([1, 2, 3, 4, 5, 6, 7, 8])
+    ax.set_yticklabels(["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ])
+    ax.tick_params(axis='x', rotation=45)
+    fig.tight_layout()
+    
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+    
+# Tkinter GUI
 root = tk.Tk()
-root.title("Spyder Tkinter Test")
+root.title("Brendan and Dan's B104 GUI of Greatness")
 root.geometry("300x200")
+# Buttons
+mentalhealth_gender = tk.Button(root,
+                               text="Poor Mental Health by Age",
+                               command = mentalhealth_age,
+                               anchor = "center")
+mentalhealth_gender.pack(padx=20,pady=20)
+
+socialmedia_gender = tk.Button(root,
+                               text="Social Media by Gender",
+                               command = socialmedia_gender,
+                               anchor = "center")
+socialmedia_gender.pack(padx=20,pady=20)
+
+socialmedia_age = tk.Button(root, 
+                   text = "Social Media Use by Age", 
+                   command = socialmedia_age,
+                   anchor = "center",
+                   cursor = "hand2")
+
+socialmedia_age.pack(padx=20, pady=20)
+frame = tk.Frame(root)
+frame.pack(fill=tk.BOTH, expand=True)
+
 
 label = tk.Label(root, text="4/25 test message")
 label.pack(pady=20)
