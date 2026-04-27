@@ -9,6 +9,7 @@ import tkinter as tk
 
 df = pd.read_csv("/Users/brendancruz/Desktop/School/B104/YRBS_data/B104_QueryData/B104_Project_QueryV3.csv")
 
+print(df.head())
 
 # ## Question Answer Maps
 # # q1 - how old are you
@@ -37,50 +38,139 @@ print(df.head())
 
 #df.plot(kind = 'bar', x = 'q3', y = 'q80')
 # Average Social Media USage by Grade
-df.groupby('q3')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
-plt.xlabel('Grade Level')
-plt.ylabel('Avg Social Media Use')
-plt.title('Average Social Media Use by Grade Level')
-plt.yticks([1, 2, 3, 4, 5, 6, 7, 8], ["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ],)
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+# df.groupby('q3')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+# plt.xlabel('Grade Level')
+# plt.ylabel('Avg Social Media Use')
+# plt.title('Average Social Media Use by Grade Level')
+# plt.yticks([1, 2, 3, 4, 5, 6, 7, 8], ["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ],)
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
 
-df.groupby('q3')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
-plt.xlabel('Grade Level')
-plt.ylabel('Avg Mental Health')
-plt.title('Average Mental Health level being rated poor by Grade Level')
-plt.yticks([1, 2, 3, 4, 5], ["Never", "Rarely", "Sometimes", "Most of the time", "Always"], )
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+def socialmedia_grade():
+    for widget in frame.winfo_children():
+        widget.destroy()
+    fig, ax = plt.subplots(figsize=(6, 3))
+    
+    df.groupby('q3')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
+    ax.set_xlabel('Grade Level')
+    ax.set_ylabel('Avg Social Media Use')
+    ax.set_title('Average Social Media Use by Grade Level')
+    ax.set_yticks([1, 2, 3, 4, 5, 6, 7, 8])
+    ax.set_yticklabels(["I don't use social media", "A few time a month", "About once a week", "A few time a week", "About once a day", "Several times a day", "About once an hour", "More than once an hour" ])
+    ax.tick_params(axis='x', rotation=45)
+    fig.tight_layout()
+    
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
-df.groupby('q3')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
-plt.xlabel('Grade Level')
-plt.ylabel('Avg Weight Self-Reflection')
-plt.title('Average Weight Self-Reflection by Grade Level')
-plt.yticks([1, 2, 3, 4, 5], ["Very underweight", "Slightly underweight", "Aout the right weight", "Slightly overweight", "Very overweight"], )
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+# df.groupby('q3')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+# plt.xlabel('Grade Level')
+# plt.ylabel('Avg Mental Health')
+# plt.title('Average Mental Health level being rated poor by Grade Level')
+# plt.yticks([1, 2, 3, 4, 5], ["Never", "Rarely", "Sometimes", "Most of the time", "Always"], )
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
 
-df.groupby('q2')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
-plt.xlabel('Gender')
-plt.ylabel('Avg Weight Self-Reflection')
-plt.title('Average Weight Self-Reflection by Gender')
-plt.yticks([1, 2, 3, 4, 5], ["Very underweight", "Slightly underweight", "About the right weight", "Slightly overweight", "Very overweight"], )
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+def mentalhealth_grade():
+    for widget in frame.winfo_children():
+        widget.destroy()
+    fig, ax = plt.subplots(figsize=(6, 3))
+    
+    df.groupby('q3')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
+    ax.set_xlabel('Grade Level')
+    ax.set_ylabel('Avg Mental Health')
+    ax.set_title('Average Mental Health level being rated poor by Grade Level')
+    ax.set_yticks([1, 2, 3, 4, 5])
+    ax.set_yticklabels(["Never", "Rarely", "Sometimes", "Most of the time", "Always"])
+    ax.tick_params(axis='x', rotation=45)
+    fig.tight_layout()
+    
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
-df.groupby('q1')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
-plt.xlabel('Age')
-plt.ylabel('Avg Weight Self-Reflection')
-plt.title('Average Weight Self-Reflection by Age')
-plt.yticks([1, 2, 3, 4, 5], ["Very underweight", "Slightly underweight", "About the right weight", "Slightly overweight", "Very overweight"], )
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+# df.groupby('q3')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+# plt.xlabel('Grade Level')
+# plt.ylabel('Avg Weight Self-Reflection')
+# plt.title('Average Weight Self-Reflection by Grade Level')
+# plt.yticks([1, 2, 3, 4, 5], ["Very underweight", "Slightly underweight", "Aout the right weight", "Slightly overweight", "Very overweight"], )
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
+
+def weight_grade():
+    for widget in frame.winfo_children():
+        widget.destroy()
+    fig, ax = plt.subplots(figsize=(6, 3))
+    
+    df.groupby('q3')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
+    ax.set_xlabel('Grade Level')
+    ax.set_ylabel('Avg Weight Self-Reflection')
+    ax.set_title('Average Weight Self-Reflection by Grade Level')
+    ax.set_yticks([1, 2, 3, 4, 5])
+    ax.set_yticklabels(["Very underweight", "Slightly underweight", "Aout the right weight", "Slightly overweight", "Very overweight"])
+    ax.tick_params(axis='x', rotation=45)
+    fig.tight_layout()
+    
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+# df.groupby('q2')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+# plt.xlabel('Gender')
+# plt.ylabel('Avg Weight Self-Reflection')
+# plt.title('Average Weight Self-Reflection by Gender')
+# plt.yticks([1, 2, 3, 4, 5], ["Very underweight", "Slightly underweight", "About the right weight", "Slightly overweight", "Very overweight"], )
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
+
+def weight_gender():
+    for widget in frame.winfo_children():
+        widget.destroy()
+    fig, ax = plt.subplots(figsize=(6, 3))
+    
+    df.groupby('q2')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
+    ax.set_xlabel('Gender')
+    ax.set_ylabel('Avg Weight Self-Reflection')
+    ax.set_title('Average Weight Self-Reflection by Gender')
+    ax.set_yticks([1, 2, 3, 4, 5])
+    ax.set_yticklabels(["Very underweight", "Slightly underweight", "About the right weight", "Slightly overweight", "Very overweight"])
+    ax.tick_params(axis='x', rotation=45)
+    fig.tight_layout()
+    
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+# df.groupby('q1')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+# plt.xlabel('Age')
+# plt.ylabel('Avg Weight Self-Reflection')
+# plt.title('Average Weight Self-Reflection by Age')
+# plt.yticks([1, 2, 3, 4, 5], ["Very underweight", "Slightly underweight", "About the right weight", "Slightly overweight", "Very overweight"], )
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
+
+def weight_age():
+    for widget in frame.winfo_children():
+        widget.destroy()
+    fig, ax = plt.subplots(figsize=(6, 3))
+    df.groupby('q1')['q66'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
+    ax.set_xlabel('Age')
+    ax.set_ylabel('Avg Weight Self-Reflection')
+    ax.set_title('Average Weight Self-Reflection by Age')
+    ax.set_yticks([1, 2, 3, 4, 5])
+    ax.set_yticklabels(["Very underweight", "Slightly underweight", "About the right weight", "Slightly overweight", "Very overweight"])
+    ax.tick_params(axis='x', rotation=45)
+    fig.tight_layout()
+    
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
 # df.groupby('q2')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
 # plt.xlabel('Gender')
@@ -94,8 +184,8 @@ plt.show()
 def mentalhealth_gender():
     for widget in frame.winfo_children():
         widget.destroy()
-        
-    df.groupby('q2')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black')
+    fig, ax = plt.subplots(figsize=(6, 3))
+    df.groupby('q2')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
     ax.set_xlabel('Gender')
     ax.set_ylabel('Avg Mental Health')
     ax.set_title('Average Mental Health level being rated poor by Gender')
@@ -120,7 +210,7 @@ def mentalhealth_gender():
 def mentalhealth_age():
     for widget in frame.winfo_children():
         widget.destroy()
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(6, 3))
     df.groupby('q1')['q84'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
     ax.set_xlabel('Age')
     ax.set_ylabel('Avg Mental Health')
@@ -147,7 +237,7 @@ def socialmedia_gender():
     for widget in frame.winfo_children():
         widget.destroy()
         
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(6, 3))
     df.groupby('q2')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
     ax.set_xlabel('Gender')
     ax.set_ylabel('Avg Social Media Use')
@@ -174,7 +264,7 @@ def socialmedia_age():
     for widget in frame.winfo_children():
         widget.destroy()
         
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(6, 3))
     df.groupby('q1')['q80'].mean().plot(kind='bar', color='steelblue', edgecolor='black', ax=ax)
     ax.set_xlabel('Age')
     ax.set_ylabel('Avg Social Media Use')
@@ -191,32 +281,65 @@ def socialmedia_age():
 # Tkinter GUI
 root = tk.Tk()
 root.title("Brendan and Dan's B104 GUI of Greatness")
-root.geometry("300x200")
+root.geometry("900x600")
 # Buttons
+exit_button = tk.Button(root,
+                        text="EXIT PROGRAM",
+                        command=root.destroy)
+exit_button.pack(side=tk.BOTTOM, padx=20, pady=20)
+
+socialmedia_grade = tk.Button(root,
+                               text="Social Media by Grade Level",
+                               command=socialmedia_grade)
+socialmedia_grade.pack(side=tk.BOTTOM, padx=20, pady=20)
+
+mentalhealth_grade = tk.Button(root,
+                               text="Poor Mental Health by Grade Level",
+                               command=mentalhealth_grade)
+mentalhealth_grade.pack(side=tk.BOTTOM, padx=20, pady=20)
+
+weight_grade = tk.Button(root,
+                             text="Body Weight Self Reflection by Grade Level",
+                             command=weight_grade)
+weight_grade.pack(side=tk.BOTTOM, padx=20,pady=20)
+
+weight_gender = tk.Button(root,
+                             text="Body Weight Self Reflection by Gender",
+                             command=weight_age)
+weight_gender.pack(side=tk.BOTTOM, padx=20,pady=20)
+
+weight_age = tk.Button(root,
+                             text="Body Weight Self Reflection by Age",
+                             command=weight_age)
+weight_age.pack(side=tk.BOTTOM, padx=20,pady=20)
+
 mentalhealth_gender = tk.Button(root,
+                             text="Poor Mental Health by Gender",
+                             command=mentalhealth_gender)
+mentalhealth_gender.pack(side=tk.BOTTOM, padx=20,pady=20)
+
+mentalhealth_age = tk.Button(root,
                                text="Poor Mental Health by Age",
-                               command = mentalhealth_age,
-                               anchor = "center")
-mentalhealth_gender.pack(padx=20,pady=20)
+                               command = mentalhealth_age)
+mentalhealth_age.pack(side=tk.BOTTOM, padx=20,pady=20)
 
 socialmedia_gender = tk.Button(root,
                                text="Social Media by Gender",
-                               command = socialmedia_gender,
-                               anchor = "center")
-socialmedia_gender.pack(padx=20,pady=20)
+                               command = socialmedia_gender)
+socialmedia_gender.pack(side=tk.BOTTOM, padx=20,pady=20)
 
 socialmedia_age = tk.Button(root, 
-                   text = "Social Media Use by Age", 
-                   command = socialmedia_age,
-                   anchor = "center",
-                   cursor = "hand2")
+                   text = "Social Media Use by Age",
+                   command = socialmedia_age)
 
-socialmedia_age.pack(padx=20, pady=20)
-frame = tk.Frame(root)
+socialmedia_age.pack(side=tk.BOTTOM, padx=20, pady=20)
+
+frame = tk.Frame(root, width = 800, height = 450)
+frame.pack_propagate(False)
 frame.pack(fill=tk.BOTH, expand=True)
 
 
-label = tk.Label(root, text="4/25 test message")
-label.pack(pady=20)
+# label = tk.Label(root, text="4/25 test message")
+# label.pack(pady=20)
 
 root.mainloop()
